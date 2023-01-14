@@ -6,7 +6,6 @@ type PageProps = {
 
 
 function TodoPage({ params: { todoId } }: PageProps) {
-  // console.log(todoId)
   return (
     <div>{todoId}</div>
   )
