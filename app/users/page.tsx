@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { getUsers } from '../../services/GraphService';
 import { User } from '../../tying';
 
@@ -15,8 +16,10 @@ async function Users() {
       {
         users?.map((user: User) => (
           <div key={user.id}>
-            <p>User id: ${user.id}</p>
-            <p>User name: ${user.displayName}</p>
+            <p>user name : {user.displayName}</p>
+            <p key={user.id}>
+              <Link href={`/users/${user.id}`}>user: ${user.id}</Link>
+            </p>
           </div>
         ))
       }
