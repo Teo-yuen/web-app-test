@@ -1,28 +1,22 @@
-import Link from 'next/link';
-import { getUsers } from '../../services/GraphService';
+import { Suspense } from 'react';
 import { User } from '../../tying';
+import UserClient from './Users';
 
 async function fetchUserList() {
-  const users: User[] = await getUsers();
+  const result = await fetch("/api/getUser");
+  const users : User[]= await result.json();
   return users;
 }
 
 async function Users() {
 
-  const users = await fetchUserList();
+  // const users = await fetchUserList();
 
   return (
     <div>
-      {
-        users?.map((user: User) => (
-          <div key={user.id}>
-            <p>user name : {user.displayName}</p>
-            <p key={user.id}>
-              <Link href={`/users/${user.id}`}>user: ${user.id}</Link>
-            </p>
-          </div>
-        ))
-      }
+      <Suspense fallback={<>loading ..........</>}>
+        <UserClient />
+      </Suspense>
     </div>
   )
 }
