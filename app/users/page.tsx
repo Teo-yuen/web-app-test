@@ -1,21 +1,21 @@
 import { Suspense } from 'react';
+import { getUsers } from '../../services/GraphService';
 import { User } from '../../tying';
-import UserClient from './Users';
+import UserList from './UserList';
 
 async function fetchUserList() {
-  const result = await fetch("/api/getUser");
-  const users : User[]= await result.json();
+  const users: User[] = await getUsers();
   return users;
 }
 
 async function Users() {
 
-  // const users = await fetchUserList();
+  const users = await fetchUserList();
 
   return (
     <div>
       <Suspense fallback={<>loading ..........</>}>
-        <UserClient />
+        <UserList userList={users} />
       </Suspense>
     </div>
   )

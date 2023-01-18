@@ -1,7 +1,7 @@
 
 function Loading() {
   return (
-    <div>Loading user list</div>
+    <div>Loading...</div>
   )
 }
 
